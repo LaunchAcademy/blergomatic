@@ -1,9 +1,6 @@
 require 'pry'
 require 'rspec'
-require 'capybara/rspec'
 
-require_relative '../app.rb'
-
-set :environment, :test
-
-Capybara.app = Sinatra::Application
+require_relative '../lib/author'
+require_relative '../lib/comment'
+require_relative '../lib/article'

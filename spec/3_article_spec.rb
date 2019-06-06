@@ -76,18 +76,17 @@ describe Article do
 
       expect(article.comment_count).to eq(2)
     end
+
+    it 'has a nonhardcoded number of comments' do
+      comment_1 = Comment.new('I am wicked smaht', author)
+
+      article.add_comment(comment_1)
+
+      expect(article.comment_count).to eq(1)
+    end
   end
 
-  it 'has a nonhardcoded number of comments' do
-
-    comment_1 = Comment.new('I am wicked smaht', author)
-
-    article.add_comment(comment_1)
-
-    expect(article.comment_count).to eq(1)
-  end
-
-  context 'formatted_string' do
+  context '#formatted_string' do
     before(:each) do
       comment_1 = Comment.new('I am wicked smaht', author)
       article.add_comment(comment_1)
@@ -110,11 +109,11 @@ describe Article do
     end
   end
 
-  context "spaceforce comments" do
-    it "gives me a list of comments that include 'spaceforce'" do
+  context "#spaceforce_comments" do
+    it "gives me the number of comments that include 'spaceforce'" do
       article.add_comment(Comment.new("spaceforce", author))
       article.add_comment(Comment.new("Regular comment", author))
-      article.add_comment(Comment.new("spaceforce == awesome", author))
+      article.add_comment(Comment.new("This article should be about spaceforce", author))
 
       expect(article.spaceforce_comments.count).to eq(2)
     end

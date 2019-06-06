@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Author do
   let(:author) { Author.new('Terry', 'Pratchett') }
 
-  describe ".new" do
-    expect(author).to be_a(Authoer)
+  it ".new" do
+    expect(author).to be_a(Author)
   end
 
   describe "#first_name" do

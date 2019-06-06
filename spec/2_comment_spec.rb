@@ -5,7 +5,7 @@ describe Comment do
   let(:author) { Author.new('R.L.', 'Stine') }
   let(:comment) { Comment.new(body, author) }
 
-  describe ".new" do
+  it ".new" do
     expect(comment).to be_a(Comment)
   end
 

@@ -34,26 +34,8 @@ describe Article do
     end
   end
 
-  describe "#word_count" do
-    it 'returns the number of words in the article body' do
-      article = Article.new
-      article.body = 'A five word thing say'
-      expect(article.word_count).to eq(5)
-    end
-  end
-
-  describe "#description" do
-    it 'returns a string that includes the author name as a substring' do
-      expect(article.description.include?(author.full_name)).to eq(true)
-    end
-
-    it 'returns a string that includes the title name as a substring' do
-      expect(article.description.include?(article.title)).to eq(true)
-    end
-  end
-
   describe "#comments" do
-    it 'returns the comment objects currently assigned to the article' do
+    it 'has a reader for comments, that returns an array of comment objects for this article' do
       expect(article.comments.class).to eq(Array)
     end
   end
@@ -63,6 +45,21 @@ describe Article do
       comment = Comment.new('I am so smarrrrrrrt', author)
       article.add_comment(comment)
       expect(article.comments).to eq([comment])
+    end
+  end
+
+  describe "#word_count" do
+    it 'returns the number of words in the article body' do
+      article = Article.new
+      article.body = 'A five word thing say'
+      expect(article.word_count).to eq(5)
+    end
+  end
+
+  describe "#description" do
+    it 'returns a string with the author name and article title' do
+      expect(article.description.include?(article.title)).to eq(true)
+      expect(article.description.include?(author.full_name)).to eq(true)
     end
   end
 
@@ -86,25 +83,26 @@ describe Article do
     end
   end
 
-  context '#formatted_string' do
+  describe '#formatted_string' do
+    context "returns a large string of information..."
     before(:each) do
       comment_1 = Comment.new('I am wicked smaht', author)
       article.add_comment(comment_1)
     end
 
-    it 'includes the title' do
+    it 'including the title' do
       expect(article.formatted_string.include?(article.title)).to eq(true)
     end
 
-    it 'includes the author' do
+    it 'including the author' do
       expect(article.formatted_string.include?(article.author.full_name)).to eq(true)
     end
 
-    it 'includes the number of comments' do
+    it 'including the number of comments' do
       expect(article.formatted_string.include?('1')).to eq(true)
     end
 
-    it 'includes the body' do
+    it 'including the body' do
       expect(article.formatted_string.include?(article.body)).to eq(true)
     end
   end
@@ -115,7 +113,7 @@ describe Article do
       article.add_comment(Comment.new("Regular comment", author))
       article.add_comment(Comment.new("This article should be about spaceforce", author))
 
-      expect(article.spaceforce_comments.count).to eq(2)
+      expect(article.spaceforce_comments).to eq(2)
     end
   end
 end

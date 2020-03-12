@@ -10,24 +10,29 @@ describe Article do
     article
   end
 
+  # in this case, we are only allowing an Article to be started as a draft, without initial arguments!
+  # instead, we can write to them after initialization
+
   describe "#title" do
-    it 'can read or write the value of title' do
+    it 'returns the value of the title attribute or writes to the title attribute' do
       article = Article.new
       article.title = 'Linkbait'
+      # instance variables can be created even if they were not defined in "#initialize"
       expect(article.title).to eq('Linkbait')
     end
   end
 
   describe "#author" do
-    it 'can read or write the value of author' do
+    it 'returns the value of the author attribute or writes to the author attribute' do
       article = Article.new
       article.author = author
+      # Hint: we can use writers to assign an object to an instance variable
       expect(article.author).to eq(author)
     end
   end
 
   describe "#body" do
-    it 'can read or write the value of body' do
+    it 'returns the value of the body attribute or writes to the body attribute' do
       article = Article.new
       article.body = 'something great'
       expect(article.body).to eq('something great')
@@ -35,7 +40,7 @@ describe Article do
   end
 
   describe "#comments" do
-    it 'has a reader for comments, that returns an array of comment objects for this article' do
+    it 'has a reader for the comments attribute, that returns an array of possible comment objects for this article' do
       expect(article.comments.class).to eq(Array)
     end
   end
@@ -51,8 +56,8 @@ describe Article do
   describe "#word_count" do
     it 'returns the number of words in the article body' do
       article = Article.new
-      article.body = 'A five word thing say'
-      expect(article.word_count).to eq(5)
+      article.body = 'This article is all about aliens'
+      expect(article.word_count).to eq(6)
     end
   end
 
@@ -65,8 +70,8 @@ describe Article do
 
   describe "#comment_count" do
     it 'returns the number of comments' do
-      comment_1 = Comment.new('I am wicked smaht', author)
-      comment_2 = Comment.new('look how knowledgeable I am', author)
+      comment_1 = Comment.new('great article', author)
+      comment_2 = Comment.new('I truly disliked this article', author)
 
       article.add_comment(comment_1)
       article.add_comment(comment_2)
@@ -84,31 +89,33 @@ describe Article do
   end
 
   describe '#formatted_string' do
-    context "returns a large string of information..."
+    context "returns a large string of information about the article"
+
     before(:each) do
       comment_1 = Comment.new('I am wicked smaht', author)
       article.add_comment(comment_1)
     end
+    # before each allows us to run some code before each it block
 
-    it 'including the title' do
+    it 'includes the title' do
       expect(article.formatted_string.include?(article.title)).to eq(true)
     end
 
-    it 'including the author' do
+    it 'includes the author' do
       expect(article.formatted_string.include?(article.author.full_name)).to eq(true)
     end
 
-    it 'including the number of comments' do
+    it 'includes the number of comments' do
       expect(article.formatted_string.include?('1')).to eq(true)
     end
 
-    it 'including the body' do
+    it 'includes the body' do
       expect(article.formatted_string.include?(article.body)).to eq(true)
     end
   end
 
   context "#spaceforce_comments" do
-    it "gives me the number of comments that include 'spaceforce'" do
+    it "returns the number of article comments that include 'spaceforce'" do
       article.add_comment(Comment.new("spaceforce", author))
       article.add_comment(Comment.new("Regular comment", author))
       article.add_comment(Comment.new("This article should be about spaceforce", author))

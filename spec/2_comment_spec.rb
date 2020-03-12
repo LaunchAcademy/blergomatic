@@ -5,26 +5,28 @@ describe Comment do
   let(:author) { Author.new('R.L.', 'Stine') }
   let(:comment) { Comment.new(body, author) }
 
-  it ".new" do
-    expect(comment).to be_a(Comment)
+  describe ".new" do
+    it "returns a Comment object" do
+      expect(comment).to be_a(Comment)
+    end
   end
 
   describe "#body" do
-    it 'is a reader for body' do
+    it 'returns the value of the body attribute' do
       expect(comment.body).to eq(body)
     end
 
-    it 'is not a writer method' do
+    it 'does not allow the writing of the body attribute' do
       expect { comment.body = "Something Troll-ish" }.to raise_error(NoMethodError)
     end
   end
 
   describe "#author" do
-    it 'is a reader method for author' do
+    it 'returns the value of the author attribute' do
       expect(comment.author).to eq(author)
     end
 
-    it 'cannot change the value of author (not writeable)' do
+    it 'does not a allow writing of the author attribute' do
       author_two = Author.new('Neil', 'Gaiman')
       expect { comment.author = author_two }.to raise_error(NoMethodError)
     end

@@ -12,9 +12,3 @@ This is a test driven exercise, and the classes we define are only used by the t
 - debugging with pry - in both in our code & our tests
 - interpreting the intent of the test
 - a large textual operation
-
-### Possible Discussion Topics
-* rspec vs. rake - usability secrets from the masters
-* instance variables - to create or not to create in instance methods?
-* attr_reader vs. attr_accessor
-* when do classes need to require each other?

@@ -11,7 +11,8 @@ describe Article do
   end
 
   # in this case, we are only allowing an Article to be started as a draft, without initial arguments!
-  # instead, we can write to them after initialization
+  # instead, we can write to them after initialization. This is to give clarity on the flexibility of the initialize method and writing in
+  # instance variables that didn't previously exist on creation!
 
   describe "#title" do
     it 'returns the value of the title attribute or writes to the title attribute' do
@@ -114,13 +115,13 @@ describe Article do
     end
   end
 
-  context "#spaceforce_comments" do
-    it "returns the number of article comments that include 'spaceforce'" do
-      article.add_comment(Comment.new("spaceforce", author))
-      article.add_comment(Comment.new("Regular comment", author))
-      article.add_comment(Comment.new("This article should be about spaceforce", author))
+  context "#meme_comments" do
+    it "returns the number of article comments that include the word 'meme'" do
+      article.add_comment(Comment.new("meme-ify me captain", author))
+      article.add_comment(Comment.new("Regular comment (snore)", author))
+      article.add_comment(Comment.new("This article should be about memes and how dank they can be", author))
 
-      expect(article.spaceforce_comments).to eq(2)
+      expect(article.meme_comments).to eq(2)
     end
   end
 end

@@ -26,7 +26,7 @@ describe Author do
   end
 
   describe "#email" do
-    it 'returns the value of the email attribute and write to that attribute' do
+    it 'returns the value of the email attribute and writes to that attribute' do
       email = 'user@example.com'
       author.email = email
       expect(author.email).to eq(email)

@@ -115,7 +115,7 @@ describe Article do
     end
   end
 
-  context "#meme_comments" do
+  describe "#meme_comments" do
     it "returns the number of article comments that include the word 'meme'" do
       article.add_comment(Comment.new("meme-ify me captain", author))
       article.add_comment(Comment.new("Regular comment (snore)", author))

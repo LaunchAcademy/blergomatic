@@ -44,6 +44,10 @@ describe Article do
     it 'has a reader for the comments attribute, that returns an array of possible comment objects for this article' do
       expect(article.comments.class).to eq(Array)
     end
+
+    it 'does not allow the writing of the body attribute' do
+      expect { article.comments = ["Something Troll-ish"] }.to raise_error(NoMethodError)
+    end
   end
 
   describe "#add_comment" do

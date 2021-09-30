@@ -45,7 +45,7 @@ describe Article do
       expect(article.comments.class).to eq(Array)
     end
 
-    it 'does not allow the writing of the body attribute' do
+    it 'does not allow the writing of the comments attribute' do
       expect { article.comments = ["Something Troll-ish"] }.to raise_error(NoMethodError)
     end
   end

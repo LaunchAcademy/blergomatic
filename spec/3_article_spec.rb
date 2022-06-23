@@ -5,8 +5,8 @@ describe Article do
   let(:article) do
     article = Article.new
     article.author = author
-    article.title = 'Something epic'
-    article.body = 'A really long post about nothing'
+    article.title = 'Matilda'
+    article.body = 'a magical psychic cosmic horror movie about a girl that can control things with her mind'
     article
   end
 

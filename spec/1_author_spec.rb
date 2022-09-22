@@ -26,8 +26,10 @@ describe Author do
   end
 
   describe "#email" do
+    
     it 'returns the value of the email attribute and writes to that attribute' do
       email = 'user@example.com'
+      binding.pry
       author.email = email
       expect(author.email).to eq(email)
     end

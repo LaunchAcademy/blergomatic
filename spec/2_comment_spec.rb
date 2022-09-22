@@ -23,7 +23,6 @@ describe Comment do
 
   describe "#author" do
     it 'returns the value of the author attribute' do
-      binding.pry 
       expect(comment.author).to eq(author)
     end
 
